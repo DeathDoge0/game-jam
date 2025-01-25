@@ -41,7 +41,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	# If we aren't dragging and a mouse button press happens then
-	if not is_dragging and event is InputEventMouseButton and event.is_pressed():
+	if not is_dragging and event is InputEventMouseButton and \
+	   event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
+		var iemb = event as InputEventMouseButton
 		# Set the node_b to the rigid body that triggered this input event
 		mouse_pin.node_b = mouse_pin.get_path_to(rigid_body_2d)
 		is_dragging = true
