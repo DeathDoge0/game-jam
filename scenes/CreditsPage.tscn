@@ -26,10 +26,11 @@ theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[p align=center]
 Programming - Calvin Riley
+Jonah
 
-Art - 
+Art - Hudson Hailey
 
-Music -
+Music - Blake Hobbs
 [/p]"
 
 [node name="Button" type="Button" parent="."]

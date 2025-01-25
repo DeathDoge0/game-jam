@@ -6,7 +6,13 @@ extends Node2D
 @onready var rigid_body_2d: RigidBody2D = $RigidBody2D
 
 
-var is_dragging = false
+@export var resource: String = ""
+
+@export var is_dragging = false
+
+
+func update_label(newl: String = ""):
+	$RigidBody2D/ResourceLabel.text = newl if newl else resource
 
 
 func _ready() -> void:
@@ -32,9 +38,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		# Or unlock the rotation of the rigid body with
 #		rigid_body_2d.lock_rotation = false
 
+
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	# If we aren't dragging and a mouse button press happens then
-	if not is_dragging and event is InputEventMouseButton and event.is_pressed():
+	if not is_dragging and event is InputEventMouseButton and \
+	   event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
+		var iemb = event as InputEventMouseButton
 		# Set the node_b to the rigid body that triggered this input event
 		mouse_pin.node_b = mouse_pin.get_path_to(rigid_body_2d)
 		is_dragging = true
