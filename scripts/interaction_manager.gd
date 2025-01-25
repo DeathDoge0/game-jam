@@ -6,7 +6,13 @@ class Outcome:
 	var output = {}
 
 	static func declare(required: Dictionary, results: Dictionary):
+		"""
+		Ensures that the materials in this transaction are valid, and
+		returns a new Outcome object representing the transaction if
+		checks have passed.
+		"""
 		var o = Outcome.new()
+
 		for k in required:
 			assert(k in available_resources)
 		for k in results:
@@ -16,8 +22,13 @@ class Outcome:
 		o.output = results
 		return o
 
+
 	func keyval():
+		"""
+		Returns a list of the materials needed, irrespective of quantities.
+		"""
 		return requirements.keys()
+
 
 	func _to_string() -> String:
 		return "Needed: %s\nProduct: %s\n\n" % [requirements, output]
@@ -56,10 +67,16 @@ var __outcomelist = [
 	Outcome.declare({"Metal": 1, "Powder": 2}, {"Metal": 2, "Metal Scraps": 1}),
 ]
 
+#While we do already have the list of outcomes above, we will put them into a
+#dictionary for easier searching.  This assumes, of course, that ONLY ONE
+#outcome is possible for any combination of resources.
 var processor_outcomes = {}
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	"""
+	Construct the outcome dictionary, and ensure that none of the necessary
+	resource structures can be changed from this point forward.
+	"""
 	for o in __outcomelist:
 		processor_outcomes[o.keyval()] = o
 	__outcomelist.make_read_only()
@@ -67,10 +84,3 @@ func _ready() -> void:
 	for k in processor_outcomes.keys():
 		k.make_read_only()
 	processor_outcomes.make_read_only()
-
-	print(processor_outcomes)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
