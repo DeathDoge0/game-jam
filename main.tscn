@@ -1,11 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://cyxuajkx3ol6c"]
+[gd_scene load_steps=3 format=3 uid="uid://cyxuajkx3ol6c"]
 
 [ext_resource type="PackedScene" uid="uid://by6lsiob5mcoi" path="res://bubble.tscn" id="1_pqjew"]
+[ext_resource type="Script" path="res://collision_polygon_2d.gd" id="2_0bm4t"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Node2D" parent="." instance=ExtResource("1_pqjew")]
-position = Vector2(139, 101)
+position = Vector2(192, 165)
 
 [node name="Node2D2" parent="." instance=ExtResource("1_pqjew")]
 position = Vector2(438, 124)
+
+[node name="Node2D3" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="Node2D3"]
+position = Vector2(0, 4)
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Node2D3"]
+position = Vector2(0, 4)
+freeze = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Node2D3/RigidBody2D"]
+position = Vector2(-387, -95)
+polygon = PackedVector2Array(-393, 18, 40, 28, 47, 409, -323, 404, -327, 16, -393, 20, -395, 511, 146, 507, 131, -60, -402, -62)
+script = ExtResource("2_0bm4t")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(-390, -85)
