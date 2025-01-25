@@ -6,7 +6,13 @@ extends Node2D
 @onready var rigid_body_2d: RigidBody2D = $RigidBody2D
 
 
-var is_dragging = false
+@export var resource: String = ""
+
+@export var is_dragging = false
+
+
+func update_label(newl: String = ""):
+	$RigidBody2D/ResourceLabel.text = newl if newl else resource
 
 
 func _ready() -> void:
