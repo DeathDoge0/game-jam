@@ -24,8 +24,7 @@ func _ready() -> void:
 	rigid_body_2d.input_event.connect(_on_input_event)
 
 
-func _physics_process(delta: float) -> void:
-	mouse_pin.global_position = get_global_mouse_position()
+func _physics_process(delta: float) -> void:	mouse_pin.global_position = get_global_mouse_position()
 
 
 func _unhandled_input(event: InputEvent) -> void:

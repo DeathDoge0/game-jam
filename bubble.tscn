@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://babrg77tq6jer"]
+[gd_scene load_steps=6 format=3 uid="uid://by6lsiob5mcoi"]
 
 [ext_resource type="Script" path="res://rootbubble.gd" id="1_mvite"]
-[ext_resource type="Texture2D" uid="uid://h1q83s5k5lye" path="res://circle.svg" id="1_ythh7"]
+[ext_resource type="Script" path="res://rigid_body_2d.gd" id="2_21app"]
+[ext_resource type="Texture2D" uid="uid://bg6ts54r8t4fn" path="res://bubbles/Rainbow Bubble.png" id="3_h4bfu"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3n6mu"]
 friction = 0.6
@@ -18,20 +19,11 @@ input_pickable = true
 physics_material_override = SubResource("PhysicsMaterial_3n6mu")
 gravity_scale = 0.0
 
-[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
-texture = ExtResource("1_ythh7")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 visible = false
 shape = SubResource("CircleShape2D_c3kko")
 
-[node name="ResourceLabel" type="Label" parent="RigidBody2D"]
-offset_left = -50.0
-offset_top = -11.0
-offset_right = 49.0
-offset_bottom = 12.0
-text = "Label"
-horizontal_alignment = 1
+=======
 
 [node name="MousePin" type="PinJoint2D" parent="."]
 
