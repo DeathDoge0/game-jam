@@ -11,5 +11,9 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _on_back_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/TitleCard.tscn")
+func _on_newgame_press():
+	get_tree().change_scene_to_file("res://scenes/GameField.tscn")
+
+
+func _on_credits_press():
+	get_tree().change_scene_to_file("res://scenes/CreditsPage.tscn")
