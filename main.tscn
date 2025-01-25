@@ -1,14 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://1ps78pwp3gda"]
+[gd_scene load_steps=2 format=3 uid="uid://cyxuajkx3ol6c"]
 
-[ext_resource type="PackedScene" uid="uid://babrg77tq6jer" path="res://bubble.tscn" id="1_pqjew"]
+[ext_resource type="PackedScene" uid="uid://by6lsiob5mcoi" path="res://bubble.tscn" id="1_pqjew"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Node2D" parent="." instance=ExtResource("1_pqjew")]
-physics_interpolation_mode = 1
 position = Vector2(139, 101)
 
 [node name="Node2D2" parent="." instance=ExtResource("1_pqjew")]
 position = Vector2(438, 124)
-
-[node name="Camera2D" type="Camera2D" parent="."]
