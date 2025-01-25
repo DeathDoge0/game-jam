@@ -14,3 +14,4 @@
 # Flow
 *	Start with 5 bubbles.
 	*	1 each with Fire, Water, Air, Earth; 1 empty (maybe?)
+*	Combine bubbles?
