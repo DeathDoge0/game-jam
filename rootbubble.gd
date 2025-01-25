@@ -11,8 +11,8 @@ extends Node2D
 @export var is_dragging = false
 
 
-func update_label(newl: String = ""):
-	$RigidBody2D/ResourceLabel.text = newl if newl else resource
+func set_sprite(img):
+	$RigidBody2D/Sprite2D.texture = ImageTexture.create_from_image(img)
 
 
 func _ready() -> void:

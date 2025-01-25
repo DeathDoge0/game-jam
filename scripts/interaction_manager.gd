@@ -13,15 +13,9 @@ class Outcome:
 		"""
 		var o = Outcome.new()
 
-		for k in required:
-			assert(k in available_resources)
-		for k in results:
-			assert(k in available_resources)
-
 		o.requirements = required
 		o.output = results
 		return o
-
 
 	func keyval():
 		"""
@@ -34,7 +28,8 @@ class Outcome:
 		return "Needed: %s\nProduct: %s\n\n" % [requirements, output]
 
 
-const available_resources = [
+
+var available_resources = [
 	"Dirt",
 	"Fire",
 	"Grass",
@@ -48,8 +43,28 @@ const available_resources = [
 	"Light",
 	"Heat",
 	"Flower",
-	"Rainbow"
+	"Rainbow",
 ]
+
+var __resource_images = {
+	"Dirt": load("res://bubbles/Dirt Bubble.png"),
+	"Fire": load("res://bubbles/Fire Bubble.png"),
+	"Grass": load("res://bubbles/Grass Bubble.png"),
+	"Water": load("res://bubbles/Water Bubble.png"),
+	"Mud": load("res://bubbles/Mud Bubble.png"),
+	"Powder": load("res://bubbles/Powder Bubble.png"),
+	"Metal": load("res://bubbles/Metal Bubble.png"),
+	"Fuel": load("res://bubbles/Fuel Bubble.png"),
+	"Fuel Shavings": load("res://bubbles/Fuel Shards Bubble.png"),
+	"Metal Scraps": load("res://bubbles/Iron Shards Bubble.png"),
+	"Light": load("res://bubbles/Light Bubble.png"),
+	"Heat": load("res://bubbles/Heat Bubble.png"),
+	"Flower": load("res://bubbles/Flower Bubble.png"),
+	"Rainbow": load("res://bubbles/Rainbow Bubble.png"),
+}
+
+func get_image(res: String):
+	return __resource_images.get(res)
 
 
 var __outcomelist = [
@@ -77,6 +92,8 @@ func _ready() -> void:
 	Construct the outcome dictionary, and ensure that none of the necessary
 	resource structures can be changed from this point forward.
 	"""
+	available_resources.make_read_only()
+	
 	for o in __outcomelist:
 		processor_outcomes[o.keyval()] = o
 	__outcomelist.make_read_only()
