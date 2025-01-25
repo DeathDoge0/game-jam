@@ -3,7 +3,8 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print("Game entered")
+	$ResourceProcessor.products_made.connect(add_bubbles)
+
 	var b1 = load("res://bubble.tscn").instantiate()
 	b1.position = Vector2(74, 76)
 	b1.resource = "Fire"
@@ -35,17 +36,14 @@ func _ready() -> void:
 	add_child(b5)
 
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		#get_tree().change_scene_to_file("res://scenes/TitleCard.tscn")
-		pass
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
-func _on_mousepress():
-	print("Game left")
-	pass
+func add_bubbles(resources):
+	print(resources)
+	for i in range(len(resources)):
+		var bubb = load("res://bubble.tscn").instantiate()
+		var processorloc = $ProcessorOutputPath/ProcessorPathLocation
+		processorloc.progress_ratio = (float(i) / len(resources))
+		bubb.position = processorloc.position
+		bubb.resource = resources[i]
+		bubb.update_label()		
+		add_child(bubb)
+	

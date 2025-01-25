@@ -1,8 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://bwcjl0n3g288i"]
+[gd_scene load_steps=6 format=3 uid="uid://bwcjl0n3g288i"]
 
 [ext_resource type="Script" path="res://scripts/test_gamefield.gd" id="1_ph111"]
 [ext_resource type="Texture2D" uid="uid://dvbevoq2kkv72" path="res://assets/background.jpg" id="1_sykff"]
 [ext_resource type="PackedScene" uid="uid://sx4pgyw3fue" path="res://scenes/objects/ResourceProcessor.tscn" id="2_hl2up"]
+
+[sub_resource type="Curve2D" id="Curve2D_jqude"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1280, 0, 0, 0, 0, 0, 1280, 720, 0, 0, 0, 0, 0, 720, 0, 0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_l5eqf"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 642, 206, 0, 0, 0, 0, 722, 258, 0, 0, 0, 0, 774, 364, 0, 0, 0, 0, 722, 470, 0, 0, 0, 0, 642, 522, 0, 0, 0, 0, 558, 470, 0, 0, 0, 0, 506, 364, 0, 0, 0, 0, 558, 258, 0, 0, 0, 0, 642, 206)
+}
+point_count = 9
 
 [node name="GameField" type="Node2D"]
 script = ExtResource("1_ph111")
@@ -14,3 +26,14 @@ texture = ExtResource("1_sykff")
 
 [node name="ResourceProcessor" parent="." instance=ExtResource("2_hl2up")]
 position = Vector2(512, 264)
+
+[node name="OutsideSpawnPath" type="Path2D" parent="."]
+visible = false
+curve = SubResource("Curve2D_jqude")
+
+[node name="ProcessorOutputPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_l5eqf")
+
+[node name="ProcessorPathLocation" type="PathFollow2D" parent="ProcessorOutputPath"]
+position = Vector2(642, 206)
+rotation = 0.576375

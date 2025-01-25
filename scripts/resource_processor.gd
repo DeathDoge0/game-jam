@@ -1,5 +1,6 @@
 extends Node2D
 
+signal products_made(resources)
 
 var current_resources = {}
 
@@ -16,14 +17,15 @@ func attempt_production():
 				return current_resources[res] >= reaction.requirements[res]
 			
 			if combo.all(_hasenough):
+				for res in combo:
+					current_resources[res] -= reaction.requirements[res]
+					if current_resources[res] == 0:
+						current_resources.erase(res)
+				var new_resources = []
 				for prod in reaction.output:
 					for i in range(reaction.output[prod]):
-						produce_bubble(prod)
-
-
-func produce_bubble(product: String):
-	var bubble = load("res://bubble.tscn").instantiate()
-
+						new_resources.append(prod)
+				products_made.emit(new_resources)
 
 
 func _process(delta: float) -> void:
@@ -42,4 +44,4 @@ func _process(delta: float) -> void:
 			b.queue_free()
 
 	attempt_production()
-	print(current_resources)
+	#print(current_resources)

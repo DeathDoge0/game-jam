@@ -39,6 +39,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		# Or unlock the rotation of the rigid body with
 #		rigid_body_2d.lock_rotation = false
 
+
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	# If we aren't dragging and a mouse button press happens then
 	if not is_dragging and event is InputEventMouseButton and \
